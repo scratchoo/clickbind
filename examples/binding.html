@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .myelement{
+        padding: 20px;
+        border:2px solid #efefef;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .bordered{
+        border: 2px solid red !important;
+      }
+      .blue-border{
+        border: 2px solid blue;
+      }
+      .orange-bg{
+        border: 2px solid orange;
+        background: orange;
+        color: #fff;
+      }
+    </style>
+    <script src="../clickbind.js">
+
+    </script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+        ClickBind.bind()
+      });
+    </script>
+  </head>
+  <body>
+
+    <h2>ClickBind Example:</h2>
+    
+    <div class="myelement" data-click-bind=".language" data-active-class="bordered" data-value="java" data-equivalent-values="tomcat">
+      Java
+    </div>
+
+    <div class="myelement" data-click-bind=".language" data-active-class="blue-border" data-value="python" data-equivalent-values="py">
+      Python
+    </div>
+    <div class="myelement" data-click-bind=".language" data-active-class="blue-border" data-value="python" data-equivalent-values="py">
+      Python 2
+    </div>
+
+    <div class="myelement" data-click-bind="#framework" data-active-class="orange-bg" data-value="Laravel" data-no-value="">
+      Laravel Framework
+    </div>
+
+    <hr>
+
+    <div class="">
+      <input class="language" type="text" name="" value="">
+
+      <input class="language" type="text" name="" value="">
+
+      <input id="framework" type="text" name="" value="">
+    </div>
+
+  </body>
+</html>
