@@ -12,13 +12,10 @@
 
   const bind = function(){
 
-    let bindings = Array.from( document.querySelectorAll('[data-click-bind]') );
+    // select all [data-click-bind] that are not already initialized by initState (which set them with a [data-click-binded=true])
+    let bindings = Array.from( document.querySelectorAll('[data-click-bind]:not([data-click-binded="true"])') );
 
     initState(bindings);
-
-    bindings.forEach(function(binding){
-      setClickEvent(binding);
-    });
 
   }
 
@@ -31,10 +28,15 @@
       let target = binding.getAttribute('data-click-bind');
       let firstTargetValue = document.querySelector(target).value;
 
+      setClickEvent(binding);
+
       if( !uniqueBindingTargets.includes(target) ){
         uniqueBindingTargets.push(target);
         renderState(binding);
       }
+
+      // set data-click-binded to true so next time if we add any [data-click-bind] element dynamically, the events won't be attached twice
+      binding.setAttribute('data-click-binded', true);
 
     });
 

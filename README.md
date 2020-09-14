@@ -10,6 +10,24 @@ npm install clickbind
 
 ### Usage
 
+Once the document is ready, if you are loading ClickBind from the script tag, initialize it as follows:
+
+```
+document.addEventListener("DOMContentLoaded", function() {
+  ClickBind.bind()
+});
+```
+
+Or if you are using a module bundler like Webpack, make sure to import it before using it:
+
+```
+import ClickBind from 'clickbind';
+
+document.addEventListener("DOMContentLoaded", function() {
+  ClickBind.bind()
+});
+```
+
 You can bind any element like a div, span or a button... to an input text field (a hidden input in most cases) using its class/id/other-selector
 
 ```
