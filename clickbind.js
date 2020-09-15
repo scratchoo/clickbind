@@ -98,10 +98,12 @@
       let target = binding.getAttribute('data-click-bind');
       let firstTargetInput = document.querySelector(target);
 
-      if( binding.classList.contains(activeClass) ){
-        firstTargetInput.value = binding.getAttribute('data-no-value') || ''
-      }else{
-        firstTargetInput.value = binding.getAttribute('data-value');
+      if(firstTargetInput){
+        if( binding.classList.contains(activeClass) ){
+          firstTargetInput.value = binding.getAttribute('data-no-value') || ''
+        }else{
+          firstTargetInput.value = binding.getAttribute('data-value');
+        }
       }
 
       renderState(binding);
