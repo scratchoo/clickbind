@@ -1,5 +1,5 @@
 /*
-  ClickBind v1.0.3
+  ClickBind v1.0.4
   Created by: Scratchoo <scratchoo.com>
   Under: MIT license
 */
@@ -94,6 +94,9 @@
 
     binding.addEventListener('click', function(){
 
+      // empty other-related fields if set via [data-onclick-set-empty]
+      emptyExtraFields(binding.getAttribute('data-onclick-set-empty'));
+
       let activeClass = binding.getAttribute('data-active-class');
       let target = binding.getAttribute('data-click-bind');
       let firstTargetInput = document.querySelector(target);
@@ -110,6 +113,23 @@
 
     });
 
+  }
+
+  // sometimes when [data-click-bind] selection/click change, we want to reset some other related fields (that maybe some sub-category of the main bound input), this function takes the [data-onclick-set-empty] attribute value, and use it to empty the specifid selector on that value.
+  function emptyExtraFields(fieldsToEmpty){
+    if(fieldsToEmpty){
+      Array.from(fieldsToEmpty.split(',')).forEach(function(selector){
+        let fields = document.querySelectorAll(selector);
+        Array.from(fields).forEach(function(field){
+          if(field){
+            field.value = '';
+          }
+        });
+      });
+      Array.from(document.querySelectorAll('[data-click-bind]')).forEach(function(binding){
+        renderState(binding);
+      });
+    }
   }
 
   return { bind: bind }; // oh yeah, sometimes I just don't feel like the -shortcut- syntax { bind }
