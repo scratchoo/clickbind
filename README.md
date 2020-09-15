@@ -60,6 +60,21 @@ Here, whether the input has the value "true" or "1", they will be considered as 
 
 If you have multiple equivalent values, you need to separate them by comma, i.e: `data-equivalent-values="1,yes,ya,ok"`
 
+#### Binding dynamically added Elements to inputs:
+
+Just add the necessary data attributes to the the added element and call `ClickBind.bind()`, i.e:
+
+```
+let element = document.createElement('div');
+element.setAttribute('data-click-bind', '.target-input');
+element.setAttribute('data-value', 'hello world!');
+element.setAttribute('data-active-class', 'primary-bg')
+document.body.append(element);
+ClickBind.bind(); // bind the newly added element
+```
+
+Make sure you call `ClickBind.bind()` whenever you add new [data-click-bind] elements to the page.
+
 ### Summary of available data attributes
 
 `data-click-bind="selector-of-input"` Adding [data-click-bind] to an HTML element will allow you to bind it an input field.
@@ -73,4 +88,6 @@ If you have multiple equivalent values, you need to separate them by comma, i.e:
 `data-no-value=""` if set, the connected input will take this value
 when [data-click-bind] is turned off.
 
-#### MIT license.
+### License
+
+This project is under MIT license.
