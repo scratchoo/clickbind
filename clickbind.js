@@ -1,5 +1,5 @@
 /*
-  ClickBind v1.0
+  ClickBind v1.0.2
   Created by: Scratchoo <scratchoo.com>
   Under: MIT license
 */
@@ -32,7 +32,6 @@
     bindings.forEach(function(binding){
 
       let target = binding.getAttribute('data-click-bind');
-      let firstTargetValue = document.querySelector(target).value;
 
       setClickEvent(binding);
 
@@ -65,8 +64,12 @@
   function renderState(binding){
 
     let target = binding.getAttribute('data-click-bind');
-    let firstTargetValue = document.querySelector(target).value;
-
+    let input = document.querySelector(target);
+    if(input){
+      var firstTargetValue = input.value;
+    }else{
+      var firstTargetValue = ''
+    }
 
     unifyTargetInputs(target, firstTargetValue);
 
