@@ -1,3 +1,9 @@
+/*
+  ClickBind v1.0
+  Created by: Scratchoo <scratchoo.com>
+  Under: MIT license
+*/
+
 (function (root, factory) {
 
   if (typeof define === "function" && define.amd) {
@@ -35,7 +41,7 @@
         renderState(binding);
       }
 
-      // set data-click-binded to true so next time if we add any [data-click-bind] element dynamically, the events won't be attached twice
+      // set data-click-binded to true so next time if we add any [data-click-bind] element dynamically, the click event won't be attached twice, also we prevent extra loop through the "already" treated elements.
       binding.setAttribute('data-click-binded', true);
 
     });
@@ -90,7 +96,7 @@
       let firstTargetInput = document.querySelector(target);
 
       if( binding.classList.contains(activeClass) ){
-        firstTargetInput.value = ''
+        firstTargetInput.value = binding.getAttribute('data-no-value') || ''
       }else{
         firstTargetInput.value = binding.getAttribute('data-value');
       }
@@ -101,6 +107,6 @@
 
   }
 
-  return { bind: bind, test: 'testing' };
+  return { bind: bind }; // oh yeah, sometimes I just don't feel like the -shortcut- syntax { bind }
 
 });

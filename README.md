@@ -56,4 +56,21 @@ Sometimes, the input field can be filled with values that are equivalent to what
 <input type="text" class="is-a-bachelor" />
 ```
 
+Here, whether the input has the value "true" or "1", they will be considered as the same, and the [data-click-bind] will have the active class added to it.
+
 If you have multiple equivalent values, you need to separate them by comma, i.e: `data-equivalent-values="1,yes,ya,ok"`
+
+### Summary of available data attributes
+
+`data-click-bind="selector-of-input"` Adding [data-click-bind] to an HTML element will allow you to bind it an input field.
+
+`data-value="value to fill input with"` when [data-click-bind] element is clicked, the input will take this value.
+
+`data-active-class="active-class"` when [data-click-bind] is clicked and the input is filled, the active-class will be added to [data-click-bind]
+
+`data-equivalent-values="value1,value2,value3"` any value here will be considered equivalent to [data-value], for example if you have [data-value="javascript"] and [data-equivalent-values="js,typescript,coffeescript"], whenever the input is filled with one of these values, the related [data-click-bind] will be considered as clicked.
+
+`data-no-value=""` if set, the connected input will take this value
+when [data-click-bind] is turned off.
+
+#### MIT license.

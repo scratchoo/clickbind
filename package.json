@@ -1,10 +1,9 @@
 {
   "name": "clickbind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bind HTML elements (divs, spans, etc...) to text inputs, and set active class for the clicked element.",
   "main": "clickbind.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "scratchoo",
   "license": "MIT"
 }
