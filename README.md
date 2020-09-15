@@ -91,6 +91,22 @@ ClickBind.bind(); // bind the newly added element
 
 Make sure you call `ClickBind.bind()` whenever you add new [data-click-bind] elements to the page.
 
+### Set other (related) fields to empty on click
+
+In some situation (i.e: sub-category selection) you need to empty some fields that are not directly bound to the [data-click-bind] when it's clicked, in order to achieve this, just add `data-onclick-set-empty='selector1,selector2,...'`
+
+```
+<button data-click-bind=".language" data-value="java" data-onclick-set-empty=".popularity">Java</button>
+
+<button data-click-bind=".language" data-value="Rust" data-onclick-set-empty=".popularity">Rust</button>
+
+<input class="language" />
+<input class="popularity" />
+```
+
+In the above example, each time you click one of the button, the input.popularity will be reset to empty ('')
+
+
 ### Summary of available data attributes
 
 `data-click-bind="selector-of-input"` Adding [data-click-bind] to an HTML element will allow you to bind it an input field.
@@ -103,6 +119,8 @@ Make sure you call `ClickBind.bind()` whenever you add new [data-click-bind] ele
 
 `data-no-value=""` if set, the connected input will take this value
 when [data-click-bind] is turned off.
+
+`data-onclick-set-empty="selector1,selector2,selector3"` if this data attribute is set, any selector that match it will be set to '' when the [data-click-bind] element is clicked.
 
 ### License
 
