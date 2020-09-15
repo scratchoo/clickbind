@@ -1,5 +1,5 @@
 /*
-  ClickBind v1.0.2
+  ClickBind v1.0.3
   Created by: Scratchoo <scratchoo.com>
   Under: MIT license
 */
