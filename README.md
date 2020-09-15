@@ -1,11 +1,27 @@
 # clickbind
 
+A very tiny (pure) JavaScript library, to bind HTML elements (div, span, button, etc.) to an input that will take the specified value when this element is clicked.
+
 ### Installation
 
-Download clickbind.js or install it via npm:
+You can add clickbind to your project either by downloading it from this repo, or using it via CDN, or install it with a package manager (NPM/YARN)
+
+Via CDN:
+
+```
+https://cdn.jsdelivr.net/npm/clickbind@1.0.1/clickbind.min.js
+```
+
+Install it with a package manager like NPM:
 
 ```
 npm install clickbind
+```
+
+Or with YARN:
+
+```
+yarn add clickbind
 ```
 
 ### Usage
