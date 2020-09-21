@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+      }
       .myelement{
         padding: 20px;
         border:2px solid #efefef;
@@ -59,15 +62,18 @@
     <hr>
 
     <div class="">
+      Selected Language:
       <input class="language" type="text" name="" value="">
-
       <input class="language" type="text" name="" value="">
-
+    </div>
+    <br>
+    <div class="">
+      Selected Framework:
       <input id="framework" type="text" name="" value="">
     </div>
 
     <br>
-    
+
     <h2>An input can take multiple values (comma separated):</h2>
     <p>Just add data-append="true" to the clicked element</p>
     <div class="myelement" data-click-bind="#fruits" data-append="true" data-active-class="blue-border" data-value="orange" data-no-value="">
