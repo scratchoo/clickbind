@@ -16,6 +16,14 @@
 
 })(this, function () {
 
+  function trim (string, char) {
+    if (char === "]") char = "\\]";
+    if (char === "\\") char = "\\\\";
+    return string.replace(new RegExp(
+      "^[" + char + "]+|[" + char + "]+$", "g"
+    ), "");
+  }
+
   const bind = function(){
 
     // select all [data-click-bind] that are not already initialized by initState (which set them with a [data-click-binded=true])
@@ -80,10 +88,22 @@
       let activeClass = binding.getAttribute('data-active-class');
       let bindingValues = [binding.getAttribute('data-value')].concat( (binding.getAttribute('data-equivalent-values') || '').replace(/\s/g,'').split(',').filter(Boolean)); // filter(Boolean) to prevent array with empty string
 
-      if( bindingValues.includes(firstTargetValue) ){
-        binding.classList.add(activeClass);
+      let isAppend = binding.getAttribute('data-append') == 'true';
+
+      if(isAppend){
+        let inputValues = firstTargetValue.split(',');
+        let isFounded = inputValues.some( ai => bindingValues.includes(ai) );
+        if(isFounded){
+          binding.classList.add(activeClass);
+        }else{
+          binding.classList.remove(activeClass);
+        }
       }else{
-        binding.classList.remove(activeClass);
+        if( bindingValues.includes(firstTargetValue) ){
+          binding.classList.add(activeClass);
+        }else{
+          binding.classList.remove(activeClass);
+        }
       }
 
     });
@@ -101,11 +121,25 @@
       let target = binding.getAttribute('data-click-bind');
       let firstTargetInput = document.querySelector(target);
 
+      let isAppend = binding.getAttribute('data-append') == 'true';
+      let bindingValue = binding.getAttribute('data-value');
+
       if(firstTargetInput){
         if( binding.classList.contains(activeClass) ){
-          firstTargetInput.value = binding.getAttribute('data-no-value') || ''
+          if(isAppend && firstTargetInput.value.indexOf(',') > -1){
+            firstTargetInput.value = firstTargetInput.value.replace(`${bindingValue},`,'').replace(bindingValue, '');
+            firstTargetInput.value = trim(firstTargetInput.value, ',');
+
+          }else{
+            firstTargetInput.value = binding.getAttribute('data-no-value') || '';
+          }
         }else{
-          firstTargetInput.value = binding.getAttribute('data-value');
+          if(isAppend){
+            firstTargetInput.value += `,${bindingValue}`;
+            firstTargetInput.value = trim(firstTargetInput.value, ',');
+          }else{
+            firstTargetInput.value = bindingValue;
+          }
         }
       }
 

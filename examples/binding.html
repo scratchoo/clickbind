@@ -35,8 +35,12 @@
   </head>
   <body>
 
-    <h2>ClickBind Example:</h2>
-    
+    <h1>ClickBind Examples:</h1>
+
+    <br>
+
+    <h2>Default behavior, inputs take only one value</h2>
+
     <div class="myelement" data-click-bind=".language" data-active-class="bordered" data-value="java" data-equivalent-values="tomcat">
       Java
     </div>
@@ -45,7 +49,7 @@
       Python
     </div>
     <div class="myelement" data-click-bind=".language" data-active-class="blue-border" data-value="python" data-equivalent-values="py">
-      Python 2
+      Python
     </div>
 
     <div class="myelement" data-click-bind="#framework" data-active-class="orange-bg" data-value="Laravel" data-no-value="">
@@ -61,6 +65,24 @@
 
       <input id="framework" type="text" name="" value="">
     </div>
+
+    <br>
+    
+    <h2>An input can take multiple values (comma separated):</h2>
+    <p>Just add data-append="true" to the clicked element</p>
+    <div class="myelement" data-click-bind="#fruits" data-append="true" data-active-class="blue-border" data-value="orange" data-no-value="">
+      Orange
+    </div>
+    <div class="myelement" data-click-bind="#fruits" data-append="true" data-active-class="blue-border" data-value="banana" data-no-value="">
+      Banana
+    </div>
+    <div class="myelement" data-click-bind="#fruits" data-append="true" data-active-class="blue-border" data-value="apple" data-no-value="">
+      Apple
+    </div>
+
+    <hr>
+
+    Selected fruits: <input id="fruits" type="text" name="" value="">
 
   </body>
 </html>
