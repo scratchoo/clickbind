@@ -9,7 +9,7 @@ You can add clickbind to your project either by downloading it from this repo, o
 Via CDN:
 
 ```
-https://cdn.jsdelivr.net/npm/clickbind@1.0.1/clickbind.min.js
+https://cdn.jsdelivr.net/npm/clickbind@1.0.5/clickbind.min.js
 ```
 
 Install it with a package manager like NPM:
