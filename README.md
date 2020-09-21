@@ -106,6 +106,19 @@ In some situation (i.e: sub-category selection) you need to empty some fields th
 
 In the above example, each time you click one of the button, the input.popularity will be reset to empty ('')
 
+### Append multiple (clicked) [data-click-bind] values to the same input:
+
+To append multiple values to an input instead of replacing them, just add the data attribute `data-append="true"` to [data-click-bind] element.
+
+```
+<button data-click-bind=".browsers" data-value="chrome" data-append="true">Chrome</button>
+
+<button data-click-bind=".browsers" data-value="mozilla firefox" data-append="true">Mozilla Firefox</button>
+
+<button data-click-bind=".browsers" data-value="safari" data-append="true">Safari</button>
+
+<input type="text" class="browsers" />
+```
 
 ### Summary of available data attributes
 
@@ -121,6 +134,8 @@ In the above example, each time you click one of the button, the input.popularit
 when [data-click-bind] is turned off.
 
 `data-onclick-set-empty="selector1,selector2,selector3"` if this data attribute is set, any selector that match it will be set to '' when the [data-click-bind] element is clicked.
+
+`data-append="true"` the [data-click-bind] element that has data-append set to true will be appended to the existing value in the target input.
 
 ### License
 
