@@ -1,6 +1,6 @@
 # clickbind
 
-A very tiny (pure) JavaScript library, to bind HTML elements (div, span, button, etc.) to an input that will take the specified value when this element is clicked.
+A tiny (pure) JavaScript library to bind HTML elements (div, span, button, etc.) to an input that will take the specified value when this element is clicked. (Appending multiple values to the same input is also available).
 
 ### Installation
 
@@ -9,7 +9,7 @@ You can add clickbind to your project either by downloading it from this repo, o
 Via CDN:
 
 ```
-https://cdn.jsdelivr.net/npm/clickbind@1.0.5/clickbind.min.js
+https://cdn.jsdelivr.net/npm/clickbind@1.0.6/clickbind.min.js
 ```
 
 Install it with a package manager like NPM:
@@ -120,6 +120,29 @@ To append multiple values to an input instead of replacing them, just add the da
 <input type="text" class="browsers" />
 ```
 
+### Useful methods
+
+Sometimes you just need to reset (deactivate) all the active/clicked [data-click-bind] elements, in this case you can use:
+
+```
+ClickBind.deactivateAll('.your-selector')
+```
+
+Equally you can using `activateAll` to trigger a click on all [data-click-bind] elements that are not already "selected" and match a certain selector:
+
+```
+ClickBind.activateAll('.your-selector')
+```
+
+You can even activate/deactivate every single [data-click-bind] element in the page by passing `[data-click-bind]` as selector:
+
+```
+// deactivate all using:
+ClickBind.deactivateAll('[data-click-bind]')
+// OR activate all using:
+ClickBind.activateAll('[data-click-bind]')
+```
+
 ### Summary of available data attributes
 
 `data-click-bind="selector-of-input"` Adding [data-click-bind] to an HTML element will allow you to bind it an input field.
@@ -136,6 +159,10 @@ when [data-click-bind] is turned off.
 `data-onclick-set-empty="selector1,selector2,selector3"` if this data attribute is set, any selector that match it will be set to '' when the [data-click-bind] element is clicked.
 
 `data-append="true"` the [data-click-bind] element that has data-append set to true will be appended to the existing value in the target input.
+
+### Contributors:
+
+@MedBouzidd
 
 ### License
 

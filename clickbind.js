@@ -1,5 +1,5 @@
 /*
-  ClickBind v1.0.5
+  ClickBind v1.0.6
   Created by: Scratchoo <scratchoo.com>
   Under: MIT license
 */
@@ -22,6 +22,24 @@
     return string.replace(new RegExp(
       "^[" + char + "]+|[" + char + "]+$", "g"
     ), "");
+  }
+
+  function toggleAll(selector, condition){
+    Array.from(document.querySelectorAll(selector)).forEach(function(element){
+      let activeClass = element.getAttribute('data-active-class');
+      if(element.getAttribute('data-click-bind') && element.classList.contains(activeClass) == condition.shouldHasActiveClass){
+        const event = new Event('click');
+        element.dispatchEvent(event);
+      }
+    });
+  }
+
+  const activateAll = function(selector){
+    toggleAll(selector, { shouldHasActiveClass: false });
+  }
+
+  const deactivateAll = function(selector){
+    toggleAll(selector, { shouldHasActiveClass: true });
   }
 
   const bind = function(){
@@ -61,9 +79,7 @@
     let targetInputs = Array.from(document.querySelectorAll(target));
 
     targetInputs.forEach(function(targetInput){
-
       targetInput.value = firstTargetValue;
-
     });
 
   }
@@ -127,9 +143,14 @@
       if(firstTargetInput){
         if( binding.classList.contains(activeClass) ){
           if(isAppend && firstTargetInput.value.indexOf(',') > -1){
-            firstTargetInput.value = firstTargetInput.value.replace(`${bindingValue},`,'').replace(bindingValue, '');
+            // turn input values to an array of values
+            let inputValuesArr = firstTargetInput.value.split(',');
+            // remove bindingValue from the array
+            inputValuesArr.splice(inputValuesArr.indexOf(bindingValue), 1);
+            // join array values back to string values separated by ','
+            firstTargetInput.value = inputValuesArr.join(',');
+            // TODO: (note to self) maybe the following line has no effect and should be deleted, to check later:
             firstTargetInput.value = trim(firstTargetInput.value, ',');
-
           }else{
             firstTargetInput.value = binding.getAttribute('data-no-value') || '';
           }
@@ -166,6 +187,10 @@
     }
   }
 
-  return { bind: bind }; // oh yeah, sometimes I just don't feel like the -shortcut- syntax { bind }
+  return {
+    bind: bind,
+    activateAll: activateAll,
+    deactivateAll: deactivateAll
+  };
 
 });
